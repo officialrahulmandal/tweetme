@@ -9,7 +9,9 @@ class TweetDetailView(DetailView):
     queryset = Tweet.objects.all()
 
     def get_object(self):
-        return Tweet.objects.get(id=1)
+        print(self.kwargs)
+        pk = self.kwargs.get('pk')
+        return Tweet.objects.get(id=pk)
 
 class TweetListView(ListView):
     queryset = Tweet.objects.all()
@@ -20,8 +22,8 @@ class TweetListView(ListView):
 
 
 # Create your views here.
-def tweet_detail_view(request, id=1):
-    obj = Tweet.objects.get(id=id)
+def tweet_detail_view(request, pk=1):
+    obj = Tweet.objects.get(id=pk)
     context ={
         "object": obj
     }
